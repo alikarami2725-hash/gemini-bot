@@ -11,7 +11,10 @@ def ask_gemini(text):
     data = {"contents": [{"parts": [{"text": text}]}]}
     response = requests.post(url, json=data)
     result = response.json()
-    return result["candidates"][0]["content"]["parts"][0]["text"]
+    if "candidates" in result:
+        return result["candidates"][0]["content"]["parts"][0]["text"]
+    else:
+        return str(result)
 
 @bot.message_handler(func=lambda msg: True)
 def handle(msg):
