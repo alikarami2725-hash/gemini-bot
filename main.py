@@ -1,7 +1,7 @@
 import telebot
 import requests
 
-BOT_TOKEN = "8621315025:AAHK1IMLYtE4qFXGRq8C9GUAjyE7sHRfK84"
+BOT_TOKEN = "8621315025:AAGFgcN-4j8EceBuvvuCNdogEbv5qGPoRWw"
 GEMINI_API_KEY = "AQ.Ab8RN6Kau4-kVZ-Wblzagiwc28uGiHUxg07qa7M1QflZIbqUuA"
 
 bot = telebot.TeleBot(BOT_TOKEN)
