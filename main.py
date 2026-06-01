@@ -1,0 +1,24 @@
+import telebot
+import requests
+
+BOT_TOKEN = "8621315025:AAHK1IMLYtE4qFXGRq8C9GUAjyE7sHRfK84"
+GEMINI_API_KEY = "AQ.Ab8RN6Kau4-kVZ-Wblzagiwc28uGiHUxg07qa7M1QflZIbqUuA"
+
+bot = telebot.TeleBot(BOT_TOKEN)
+
+def ask_gemini(text):
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
+    data = {"contents": [{"parts": [{"text": text}]}]}
+    response = requests.post(url, json=data)
+    result = response.json()
+    return result["candidates"][0]["content"]["parts"][0]["text"]
+
+@bot.message_handler(func=lambda msg: True)
+def handle(msg):
+    try:
+        reply = ask_gemini(msg.text)
+        bot.reply_to(msg, reply)
+    except:
+        bot.reply_to(msg, "خطایی رخ داد، دوباره امتحان کن.")
+
+bot.infinity_polling()
