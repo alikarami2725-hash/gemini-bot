@@ -18,7 +18,7 @@ def handle(msg):
     try:
         reply = ask_gemini(msg.text)
         bot.reply_to(msg, reply)
-    except:
-        bot.reply_to(msg, "خطایی رخ داد، دوباره امتحان کن.")
+    except Exception as e:
+        bot.reply_to(msg, f"خطا: {str(e)}")
 
 bot.infinity_polling()
